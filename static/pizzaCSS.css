@@ -1,0 +1,721 @@
+/* -------------- General -------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    z-index: 100;
+    background-color: white;
+    box-shadow: 10px 1px 2px 1px black;
+}
+
+header>a {
+    color: rgb(12, 97, 12);
+    padding: 2.5vw;
+    font-size: 1.5vw;
+    text-decoration: none;
+}
+
+.active-nav {
+    background-color: rgb(12, 97, 12);
+    color: white;
+}
+
+header>a:hover {
+    background-color: rgb(92, 176, 92);
+    color: white;
+}
+
+.logo__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.headerImg {
+    width: 15%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.75);
+    margin: 30px 0;
+}
+
+.homeHeaderImg {
+    width: 30%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.75);
+    margin: 30px 0;
+    animation-name: enter-image;
+    animation-duration: 4s;
+}
+
+@keyframes enter-image {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 30%;
+    }
+}
+
+.greeting-image {
+    padding: 100px 0;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../static/fire.jpeg");
+}
+
+@media only screen and (max-width: 800px) {
+    header>a {
+        font-size: 2vw;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+/*labels alignment*/
+label {
+    display: inline-block;
+    width: 10%;
+    text-align: left;
+    overflow-wrap: normal;
+
+}
+
+/*inputs fields design*/
+input {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+/*buttons class design*/
+.button {
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: royalblue;
+}
+
+/*screen adjustments*/
+@media only screen and (max-width: 601px) {
+
+    input,
+    label {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+}
+
+/*...................................... */
+
+
+
+
+/* -------------- Sign Up -------------- */
+
+/*error message in sign up form in red*/
+#errorMessage {
+    color: red;
+}
+
+/*align sign up form to center*/
+#signUpDiv {
+    text-align: center;
+}
+
+/*birtdate input in sign up form alignment*/
+.dateField {
+    width: 160px;
+    text-align: center;
+}
+
+/*...................................... */
+
+
+
+/* -------------- Sign Up -------------- */
+
+#logInDiv {
+    text-align: center;
+}
+
+/*..................personal zone................. */
+
+.circleBase {
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 15px;
+    height: 110px;
+    width: 110px;
+    overflow: hidden;
+    margin: 10px auto;
+    background-color: whitesmoke;
+}
+
+#personalZonePage {
+    display: grid;
+    grid-template-areas: 'Header1 Main Header2'
+        'Buttom Buttom Buttom'
+        'Buttom Buttom Buttom';
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#points {
+    grid-area: Header1;
+    margin-top: 25%;
+    text-align: center;
+    font-size: 40px;
+}
+
+#pointsText {
+    grid-area: Header1;
+    margin-top: 15%;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#welcomeZone {
+    grid-area: Main;
+    padding: 20px;
+    text-align: center;
+    margin: 30px auto;
+    font-style: italic;
+
+}
+
+#birthday {
+    grid-area: Header2;
+    margin-top: 25%;
+    text-align: center;
+    font-size: 40px;
+}
+
+#birthdayText {
+    grid-area: Header2;
+    margin-top: 5%;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#history {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    font-style: italic;
+}
+
+#historyBox {
+    height: 500px;
+    grid-area: Buttom;
+    border: 2px solid black;
+    overflow: scroll;
+    margin: 20px;
+    background-color: rgba(250, 235, 215, 0.5);
+}
+
+#noHistory {
+    font-size: 35px;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+
+@media only screen and (max-width: 500px) {
+    #personalZonePage {
+        display: grid;
+        grid-template-areas: 'Main'
+            'Header1'
+            'Header2'
+            'Buttom';
+    }
+
+    #noHistory {
+        font-size: 20px;
+    }
+}
+
+/* -------------- Home -------------- */
+
+#homeDiv {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-page__title {}
+
+.home-page__container {
+    border: 5px solid black;
+    margin-top: 10px;
+    padding: 16px;
+    display: flex;
+    width: 70%;
+    border-radius: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    min-height: 40vh;
+}
+
+.home-page__announcements {
+    font-style: italic;
+    font-size: 25px;
+}
+
+.home-page__paragraph {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.home__order__btn {
+    padding-top: 50px;
+}
+
+
+
+
+/*................contact............... */
+
+#FAQsPage {
+    background-color: whitesmoke;
+    color: black;
+}
+
+section {
+    min-height: 100vh;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+}
+
+#FAQtitle {
+    font-size: 35px;
+    margin: 20px 0;
+
+}
+
+.faq {
+    padding: 10px 20px;
+
+}
+
+details {
+    background: rgba(231, 202, 165, 0.5);
+    padding: 10px;
+    border-radius: 7px;
+    margin-top: 20px;
+    font-family: "Rubik";
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+#contactInfo {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+
+/* -------------- About Us -------------- */
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    column-gap: 5px;
+    row-gap: 5px;
+}
+
+
+.grid-item {
+    text-align: center;
+    border-radius: 15px;
+
+    padding: 20px;
+    min-height: 300px;
+}
+
+.grid-item-header {
+    font-style: italic;
+}
+
+.grid-item-content {
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    margin-left: 15px;
+
+}
+
+.about__us__title {
+    text-align: center;
+}
+
+.mapImg {
+    width: 50%;
+    border-radius: 10%;
+}
+
+.grid-item-hours {}
+
+
+/* team section styling */
+.teamContainer {
+    padding-top: 20px;
+    text-align: center;
+    background-color: rgba(250, 235, 215, 0.5);
+
+}
+
+.teamImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.team {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin: 20px 10px;
+}
+
+.card {
+    padding: 10px;
+}
+
+.card h4,
+.card p {
+    width: 200px;
+    margin: 10px auto;
+}
+
+
+
+/*...................................... */
+
+
+/* -------------- Gallery -------------- */
+
+#galleryDiv {
+    text-align: center;
+}
+
+
+/*gallery class design*/
+.galleryImage {
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 350px;
+    height: 300px;
+}
+
+.galleryImage:hover {
+    border: 2px solid #777;
+}
+
+/*image design*/
+.galleryImage img {
+    width: 220px;
+    height: auto;
+}
+
+
+#container {
+    display: grid;
+    grid-template-areas: 'pizza_description'' order';
+}
+
+/*image description design*/
+.imageDesc {
+    padding: 15px;
+    text-align: center;
+    height: auto;
+
+}
+
+
+
+/*...................................... */
+
+
+
+
+
+
+/* -------- Questions for order -------- */
+
+
+#questionOrder {
+    text-align: center;
+}
+
+.QU {
+    font-size: 20px;
+}
+
+.AN_QU {
+    font-size: 15px;
+}
+
+
+#go_order {
+    background-color: yellow;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+}
+
+#container {
+    display: grid;
+    grid-template-areas: 'pizza_description order'
+    ;
+}
+
+#pizza_description {
+    grid-area: pizza_description;
+    margin: 20px;
+
+
+}
+
+#order {
+    border: 2px #777 solid;
+    grid-area: order;
+    text-align: center;
+    margin: auto;
+    padding: 30px;
+
+
+}
+
+@media only screen and (max-width: 600px) {
+    #container {
+        display: grid;
+        grid-template-areas: 'pizza_description'' order';
+    }
+}
+
+.Details {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.set__order__btn {
+    margin: 40px 40%;
+}
+
+
+/*.............order confirmation............... */
+
+#OCpersonalDetails {
+    grid-area: MainP;
+
+}
+
+#OCpaymentDetails {
+    grid-area: MainC;
+
+}
+
+#OCtitle {
+    font-style: italic;
+    font-size: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#OCform {
+    display: grid;
+    grid-template-areas: 'MainP MainC'
+        'MainP MainC'
+        'Footer Footer';
+    border: 1px solid black;
+    margin: 10px auto;
+    padding: 16px;
+    width: 70%;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    min-height: 40vh;
+}
+
+.OCfield {
+    margin: 0 110px;
+    font-size: 20px;
+}
+
+/*
+input, label {
+    display:block;
+    
+}*/
+label {
+    display: inline;
+
+}
+
+#submitOC {
+    grid-area: Footer;
+    width: 200px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 820px) {
+    #OCform {
+        display: grid;
+        grid-template-areas: 'MainP '
+            'MainC '
+            'Footer ';
+
+    }
+}
+
+/* Popup container */
+#modal {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+footer {
+    background-color: #26272b;
+    padding: 45px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #737373;
+    margin-top: 50px;
+    text-align: center;
+}
+
+footer:hover {
+    background-color: #737373;
+    color: #26272b;
+}
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+.socials li{
+    margin: 0 10px;
+}
+.socials a{
+    text-decoration: none;
+    color: #fff;
+    border: 1.1px solid white;
+    padding: 5px;
+
+    border-radius: 50%;
+
+}
+.socials a i{
+    font-size: 1.1rem;
+    width: 20px;
+
+
+    transition: color .4s ease;
+
+}
