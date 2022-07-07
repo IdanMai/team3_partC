@@ -10,14 +10,32 @@ app.config.from_pyfile('settings.py')
 from pages.home.home import home
 app.register_blueprint(home)
 
-# ## About
-# from pages.about.about import about
-# app.register_blueprint(about)
-#
-# ## Catalog
-# from pages.catalog.catalog import catalog
-# app.register_blueprint(catalog)
-#
+## About
+from pages.about.about import about_us
+app.register_blueprint(about_us)
+
+## FAQs
+from pages.FAQs.FAQs import FAQs
+app.register_blueprint(FAQs)
+
+## gallery
+from pages.gallery.gallery import gallery
+app.register_blueprint(gallery)
+
+## my account
+from pages.myAccount.myAccount import my_account
+app.register_blueprint(my_account)
+
+## orders
+from pages.orders.orders import orders
+app.register_blueprint(orders)
+
+## sign up
+from pages.signUp.signUp import sign_up
+app.register_blueprint(sign_up)
+
+
+
 # ## Page error handlers
 # from pages.page_error_handlers.page_error_handlers import page_error_handlers
 # app.register_blueprint(page_error_handlers)

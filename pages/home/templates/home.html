@@ -9,7 +9,7 @@
 {% block logo %}
     <div class="greeting-image">
         <div class="logo__container">
-            <img class="homeHeaderImg" src="../../../static/logo_transparent.png" alt="Logo">
+            <img class="homeHeaderImg" src="{{url_for('static', filename='logo_transparent.png')}}" alt="Logo">
         </div>
     </div>
   {% endblock %}

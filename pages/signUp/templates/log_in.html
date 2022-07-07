@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% set title='Log In' %}
+{% block title %}{{ title }} Page {% endblock %}
+{% set page = 'Log In' %}
+
+{% block content %}
+
+    </div>
+    <!-- Sign in form -->
+    <div id="logInDiv">
+        <h1>Sign In</h1><br><br>
+
+        <form name="logInForm" class="logInForm" action="URL" method="post" onsubmit="LogIn(); return false;">
+
+            <!-- email -->
+            <div class="logInField">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="on" required>
+            </div><br><br><br>
+
+            <!-- password -->
+            <div class="logInField">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+            </div><br><br><br>
+
+            <!-- log in button -->
+            <input type="submit" id="btnLogIn" class="button" name="btnLogIn" value="Log In" /><br><br>
+
+
+
+        </form><br>
+    </div>
+  {% endblock %}

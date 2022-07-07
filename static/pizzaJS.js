@@ -38,7 +38,7 @@ var count = 0;
 function go() {
     console.log("ncncnc");
     findpizza();
-    location.href = "../pages/orders/templates/order.html";
+    location.href = "/order";
 
 }
 
@@ -117,7 +117,7 @@ function discription() {
         document.getElementById("descriptionPizza").innerHTML = "Sweet s'mores pizza";
         document.getElementById("pizza_price").innerHTML = "90";
         var img = document.createElement('img');
-        img.src = "../static/pizza5.jpg";
+        img.src =  "../static/pizza5.jpg";
         document.getElementById("pic").appendChild(img);
     }
     if (pizzaForYou == "2") {
@@ -170,7 +170,7 @@ function goToOC() {
         alert(`please fill out the wanted quantity`);
     }
     else {
-        location.href = "../pages/orders/templates/OrderConfirmation.html";
+        location.href = "/OrderConfirmation";
     }
 
 }
@@ -186,7 +186,7 @@ function openPopUp() {
 
 
 function closePopUp() {
-    location.href = "../pages/home/templates/home.html";
+    location.href = "/home";
 }
 
 
