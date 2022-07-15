@@ -9,12 +9,12 @@
     <div id="signUpDiv">
         <h1>Sign Up</h1><br><br>
 
-        <form name="signUpForm" class="signUpForm" action="URL" method="post" onsubmit="SignUp(); return false;">
+        <form name="signUpForm" class="signUpForm" action="/create_user" method="post">
 
             <!-- name -->
             <div class="signUpField">
-                <label for="Fullname">Full Name</label>
-                <input type="text" id="Fullname" name="Fullname" autocomplete="on" required>
+                <label for="username">Full Name</label>
+                <input type="text" id="username" name="username" autocomplete="on" required>
             </div><br><br><br>
 
             <!-- email -->
@@ -34,6 +34,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" minlength="8" required>
             </div><br><br><br>
+
 
             <!--verify password -->
             <div class="signUpField">

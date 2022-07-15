@@ -1,10 +1,13 @@
 from settings import DB
 import mysql.connector
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class DBManager:
     __connection = None
     __cursor = None
+
 
     def __init__(self):
         pass
@@ -13,6 +16,7 @@ class DBManager:
         # Use for INSERT UPDATE, DELETE statements.
         # Returns: The number of rows affected by the query (a non-negative int).
         self.__connect()
+        print(self.__connect())
         self.__execute(query, args)
         self.__connection.commit()
         affected_rows = self.__cursor.rowcount
