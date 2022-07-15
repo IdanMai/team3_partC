@@ -156,7 +156,7 @@ input {
 
 /* -------------- Sign Up -------------- */
 
-#logInDiv {
+.logInDiv {
     text-align: center;
 }
 

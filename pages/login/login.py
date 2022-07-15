@@ -1,5 +1,5 @@
 import mysql.connector
-from flask import Blueprint, render_template, request, redirect, jsonify, flash, url_for
+from flask import Blueprint, render_template, request, redirect, jsonify, flash, url_for, session
 from utilities.db.user import User
 
 
@@ -36,6 +36,8 @@ def login_user():
             username.append(user.username)
 
         if password[0] == request.form['password']:
+            session['username'] = username[0]
+            session['loggedin'] = True
             return render_template('home.html', username=username[0])
 
         else:
@@ -45,3 +47,10 @@ def login_user():
         flash("User Email Does Not Exist", "danger")
 
     return redirect('/login')
+
+
+@login.route("/logout/", methods=['POST'])
+def log_out():
+    session['loggedin'] = False
+    session.clear()
+    return redirect('/home')

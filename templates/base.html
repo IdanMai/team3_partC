@@ -19,7 +19,13 @@
             <a href="/contact_us">Contact</a>
             <a href="/Order_qestions">Order</a>
             <a href="/sign_up">Sign Up</a>
+            {% if not session['loggedin'] %}
             <a href="/login">Log In</a>
+            {% else %}
+             <a href="/login">Log Out</a>
+            {% endif %}
+
+
         </header>
     </div>
 {% block logo %}
