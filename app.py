@@ -34,6 +34,9 @@ app.register_blueprint(orders)
 from pages.signUp.signUp import sign_up
 app.register_blueprint(sign_up)
 
+## login
+from pages.login.login import login
+app.register_blueprint(login)
 
 
 # ## Page error handlers
