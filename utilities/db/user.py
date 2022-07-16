@@ -21,9 +21,15 @@ class User:
         query_result = dbManager.fetch(query)
         return query_result
 
-    def update_user(self):
-        query = f"UPDATE users set username='%s', birthday='%s', password='%s',points='%s' where email='%s'" % \
-                (self.username, self.birthday, self.password, self.points, self.email)
+    def update_user(self, new_email, username, password, prev_email):
+        query = f"UPDATE users set email='%s', username='%s', password='%s' where email='%s'" % \
+                (new_email, username, password, prev_email)
+        query_result = dbManager.commit(query)
+        return query_result
+
+
+    def delete_user(self, email):
+        query = f"delete from users where email='%s'" % email
         query_result = dbManager.commit(query)
         return query_result
 

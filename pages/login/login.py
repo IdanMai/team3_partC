@@ -31,12 +31,15 @@ def login_user():
     if found_user:
         password=[]
         username=[]
+        email=[]
         for user in found_user:
             password.append(user.password)
             username.append(user.username)
+            email.append(user.email)
 
         if password[0] == request.form['password']:
             session['username'] = username[0]
+            session['email'] = email[0]
             session['loggedin'] = True
             return render_template('home.html', username=username[0])
 

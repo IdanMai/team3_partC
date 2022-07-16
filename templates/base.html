@@ -4,74 +4,74 @@
     <meta charset="UTF-8">
 
     <title>{% block title %}{% endblock %}</title>
-     <link rel="stylesheet" href="{{url_for('static', filename='pizzaCSS.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='pizzaCSS.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/static/css/alert.css">
-     <script defer src="/static/pizzaJS.js"></script>
+    <link rel="stylesheet" href="/static/css/alert.css">
+    <script defer src="/static/pizzaJS.js"></script>
     <script defer src="/static/pizzaJS2.js"></script>
 </head>
-   <div class="headerDiv">
-        <header>
-            <a href="/home">Home</a>
-            <a href="/about_us">About Us</a>
-            <a href="/gallery">Gallery</a>
-            <a href="/my_account">My Account</a>
-            <a href="/contact_us">Contact</a>
-            <a href="/Order_qestions">Order</a>
-            <a href="/sign_up">Sign Up</a>
-            {% if not session['loggedin'] %}
-            <a href="/login">Log In</a>
-            {% else %}
-             <a href="/login">Log Out</a>
-            {% endif %}
+<div class="headerDiv">
+    <header>
+        <a href="/home">Home</a>
+        <a href="/about_us">About Us</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/contact_us">FAQs</a>
+        <a href="/Order_qestions">Order</a>
+        <a href="/my_account">My Account</a>
+        <a href="/sign_up">Sign Up</a>
+        {% if not session['loggedin'] %}
+        <a href="/login">Log In</a>
+        {% else %}
+        <a href="/login">Log Out</a>
+        {% endif %}
 
 
-        </header>
-    </div>
+    </header>
+</div>
 {% block logo %}
-    <div class="greeting-image">
-        <div class="logo__container">
-            <img class="headerImg" src="../../../static/logo_transparent.png" alt="Logo">
-        </div>
+<div class="greeting-image">
+    <div class="logo__container">
+        <img class="headerImg" src="../../../static/logo_transparent.png" alt="Logo">
     </div>
+</div>
 {% endblock %}
 
 
 
 <!-- Alert -->
-    <div class="alert">
-        {%  with messages = get_flashed_messages(with_categories=true) %}
-            {%  if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}" role="alert">
-                        <span>{{ message }}</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+<div class="alert">
+    {%  with messages = get_flashed_messages(with_categories=true) %}
+    {%  if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">
+        <span>{{ message }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
 
 
 
-    {% block content %}
+{% block content %}
 
-    {% endblock %}
+{% endblock %}
 
 <footer>
-        <h4>
-            CHECK OUT OUR SOCIALS
-        </h4>
-        <ul class="socials">
-            <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-youtube"></i></a></li>
-            <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-linkedin-square"></i></a></li>
-        </ul>
-    </footer>
+    <h4>
+        CHECK OUT OUR SOCIALS
+    </h4>
+    <ul class="socials">
+        <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-youtube"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=BBJa32lCaaY"><i class="fa fa-linkedin-square"></i></a></li>
+    </ul>
+</footer>
 
 
 </body>

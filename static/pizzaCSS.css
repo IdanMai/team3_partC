@@ -144,6 +144,7 @@ input {
     text-align: center;
 }
 
+
 /*birtdate input in sign up form alignment*/
 .dateField {
     width: 160px;
@@ -198,7 +199,7 @@ input {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#welcomeZone {
+.welcomeZone {
     grid-area: Main;
     padding: 20px;
     text-align: center;
@@ -511,7 +512,7 @@ details {
 #container {
     display: grid;
     grid-template-areas: 'pizza_description order'
-    ;
+;
 }
 
 #pizza_description {
@@ -714,8 +715,26 @@ footer:hover {
 .socials a i{
     font-size: 1.1rem;
     width: 20px;
-
-
     transition: color .4s ease;
+}
 
+
+
+#update_user{
+    text-align: center;
+    font-style: italic;
+    float: left;
+    width: 45%;
+}
+
+#delete_user{
+    text-align: center;
+    font-style: italic;
+    float: right;
+    width: 45%;
+}
+
+h1{
+    font-style: italic;
+    text-align: center;
 }

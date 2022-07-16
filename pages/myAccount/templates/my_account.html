@@ -7,28 +7,80 @@
 {% block content %}
 
 
-    <div id="personalZonePage">
+{% if session['loggedin'] %}
+<div id="personalZonePage">
 
-        <div class="circleBase">
-            <div id="points"> 10 </div>
-            <div id="pointsText">points</div>
-        </div>
-
-        <h1 id="welcomeZone">Hi Shula, welcome to your pizza zone!</h1>
-
-        <div class="circleBase">
-            <div id="birthday"> 38</div>
-            <div id="birthdayText"> days until BD pizza</div>
-        </div>
-        <div id="historyBox">
-            <h2 id="history">
-                your pizza history:
-            </h2>
-            <div id="noHistory"> whoopsie, it seems like you didn't make any order yet.. it's always a good time for a
-                pizza!</div>
-        </div>
-
-
+    <div class="circleBase">
+        <div id="points"> 10 </div>
+        <div id="pointsText">points</div>
     </div>
-   {% endblock %}
+
+    <h1 class="welcomeZone">Hi Shula, welcome to your pizza zone!</h1>
+
+    <div class="circleBase">
+        <div id="birthday"> 38</div>
+        <div id="birthdayText"> days until BD pizza</div>
+    </div>
+    <div id="historyBox">
+        <h2 id="history">
+            your pizza history:
+        </h2>
+        <div id="noHistory"> whoopsie, it seems like you didn't make any order yet.. it's always a good time for a
+            pizza!</div>
+    </div>
+
+</div>
+
+<!-- Update Form -->
+<div id="update_user">
+    <h1> Update Details</h1>
+
+    <!-- Update button -->
+    <button id="btn_update_user" class="button">Update Details</button><br><br>
+
+    <form id="update_user_form" style="display: none" action="/update_user" method="post">
+        <!-- name -->
+        <div class="signUpField">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="on">
+        </div><br><br><br>
+
+        <!-- email -->
+        <div class="signUpField">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="on" >
+        </div><br><br><br>
+
+        <!-- password -->
+        <div class="signUpField">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" minlength="8" >
+        </div><br><br><br>
+
+        <input type="submit" id="btnUpdate" class="button" name="btnUpdate" value="Save Changes" /><br><br>
+    </form>
+</div>
+
+
+<!-- Delete Form -->
+<div id="delete_user">
+    <h1> Delete Account</h1>
+
+    <!-- Delete button -->
+    <form id="delete_user_form" action="/delete_user" method="post">
+        <input type="submit" id="btnDelete" class="button" name="btnUpdate" value="Delete Account" /><br><br>
+    </form>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script src="/js/my_account.js"></script>
+<script src="{{ url_for('my_account.static', filename='js/my_account.js') }}"></script>
+
+
+{% else %}
+<h1 class="welcomeZone">Oops! You need to log in to view your personal zone</h1>
+
+{% endif %}
+
+{% endblock %}
 
