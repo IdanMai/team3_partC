@@ -1,5 +1,6 @@
 import mysql.connector
 from flask import Blueprint, render_template, request, redirect, jsonify
+from utilities.db.pizzaTable import Pizza
 
 gallery = Blueprint('gallery', __name__,
                      static_folder='static',
@@ -9,4 +10,6 @@ gallery = Blueprint('gallery', __name__,
 
 @gallery.route('/gallery')
 def main():
-    return render_template('gallery.html')
+    pizza = Pizza()
+    allPizza = pizza.getAllPizza()
+    return render_template('gallery.html',allPizza=allPizza)

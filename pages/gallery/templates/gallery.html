@@ -6,10 +6,24 @@
 {% block content %}
 
     <!-- Gallery -->
-    <div id="galleryDiv">
+    <div>
         <h1>Gallery</h1><br><br>
+{% for pizza in allPizza %}
+         <div id="galleryDiv">
+            <div class="galleryImage">
+            <a target="_blank" href="{{url_for('static', filename=pic)}}">
+                <img src="{{url_for('static', filename='pizza1.png')}}" alt="pizza1">
+            </a>
+                <div class="imageDesc">THE {{ pizza.name }}</div>
+            <div class="imageDesc">DESCRIPTION: {{ pizza.description }}</div>
+                <div class="imageDesc">PRICE: {{ pizza.price }}</div>
+            </div>
+         </div>
+{% endfor %}
 
-        <div class="galleryImage">
+    </div>
+       {% endblock %}
+<!--    <div class="galleryImage">
             <a target="_blank" href="{{url_for('static', filename='pizza1.png')}}">
                 <img src="{{url_for('static', filename='pizza1.png')}}" alt="pizza1">
             </a>
@@ -20,14 +34,14 @@
             <a target="_blank" href="{{url_for('static', filename='pizza2.jpg')}}">
                 <img src="{{url_for('static', filename='pizza2.jpg')}}" alt="pizza2">
             </a>
-            <div class="imageDesc">Spinach, pineapple, onlion and bell pepper pizza</div>
+            <div class="imageDesc">Spinach, pineapple, onion and bell pepper pizza</div>
         </div>
 
         <div class="galleryImage">
             <a target="_blank" href="{{url_for('static', filename='pizza3.jpg')}}">
                 <img src="{{url_for('static', filename='pizza3.jpg')}}" alt="pizza3">
             </a>
-            <div class="imageDesc">Feta cheese, mashroom, ham and tomato pizza</div>
+            <div class="imageDesc">Feta cheese, mushroom, ham and tomato pizza</div>
         </div>
 
         <div class="galleryImage">
@@ -64,6 +78,4 @@
             </a>
             <div class="imageDesc">Onion and tomato pizza</div>
         </div>
-    </div>
-    </div>
-       {% endblock %}
+    </div> -->

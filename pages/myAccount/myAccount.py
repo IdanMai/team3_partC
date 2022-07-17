@@ -1,6 +1,8 @@
 import mysql.connector
 from flask import Blueprint, render_template, request, redirect, jsonify, flash, url_for, session
 from datetime import datetime
+
+from utilities.db.orderTable import Order
 from utilities.db.user import User
 
 
@@ -12,16 +14,25 @@ my_account = Blueprint('my_account', __name__,
 
 @my_account.route('/my_account')
 def main():
-    datetimeObject = datetime(1993,6,26)
+    order = Order()
+    user = User()
+    email = session['email']
+    found_user = user.search_user(email)
+    birthday = found_user[0].birthday
+    datetimeObject = birthday
     today = datetime.now()
     delta1 = datetime(today.year, datetimeObject.month, datetimeObject.day)
     delta2 = datetime(today.year+1, datetimeObject.month, datetimeObject.day)
     days = ((delta1 if delta1 > today else delta2) - today).days
-    email = "needToTakeFromPage"
+    points = found_user[0].points
+    allOrders = order.search_order(email)
+    name = session['username']
+    return render_template('my_account.html',days=days, points=points, allOrders=allOrders, name=name)
 
-    return render_template('my_account.html',days=days)
 
-
+@my_account.route('/my_account/loggedOut')
+def mainLoggedOut():
+    return render_template('my_account.html')
 
 
 @my_account.route('/update_user', methods=['post'])

@@ -17,7 +17,11 @@
         <a href="/gallery">Gallery</a>
         <a href="/contact_us">FAQs</a>
         <a href="/Order_qestions">Order</a>
+        {% if not session['loggedin'] %}
+        <a href="/my_account/loggedOut">My Account</a>
+        {% else %}
         <a href="/my_account">My Account</a>
+        {% endif %}
         <a href="/sign_up">Sign Up</a>
         {% if not session['loggedin'] %}
         <a href="/login">Log In</a>

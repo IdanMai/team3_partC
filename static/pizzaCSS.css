@@ -223,8 +223,7 @@ input {
 }
 
 #history {
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
     padding: 10px;
     font-style: italic;
 }
@@ -442,10 +441,11 @@ details {
 /*gallery class design*/
 .galleryImage {
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 10px solid #ccc;
+    border-radius: 50px;
     box-sizing: border-box;
-    width: 350px;
-    height: 300px;
+    width: 95%;
+    height: 400px;
 }
 
 .galleryImage:hover {
@@ -737,4 +737,19 @@ footer:hover {
 h1{
     font-style: italic;
     text-align: center;
+}
+.table_row{
+    background-color: white;
+
+}
+.table_header{
+    text-align: center;
+}
+.table_cell{
+    padding: 10px;
+    text-align: center;
+
+}
+.table{
+    width: 100%;
 }
