@@ -12,4 +12,5 @@ gallery = Blueprint('gallery', __name__,
 def main():
     pizza = Pizza()
     allPizza = pizza.getAllPizza()
+    print(allPizza)
     return render_template('gallery.html',allPizza=allPizza)
