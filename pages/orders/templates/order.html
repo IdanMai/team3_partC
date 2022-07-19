@@ -4,39 +4,45 @@
 {% set page = 'Order' %}
 
 {% block content %}
-    <div id="container">
-        <div id="order">
-            <p class="Details">amount of pizzas</p>
-            <input id="num_pizza" type="number" name="num" min="0" max="10">
-            <p class="Details"> delivery fairs </p>
-            <p id="price_delivery">20</p>
-            <button onclick="calPrice()" class="button">calculation</button>
-            <p class="Details">total price</p>
-            <p id="total_price"></p>
+<div id="container">
+    <div id="order">
 
-        </div>
+        <form action="/pizza_del" method="post">
+        <p class="Details">amount of pizzas</p>
+        <input id="num_pizza" type="number" name="num" min="0" max="10" value="{{numPizza}}">
+        <p class="Details"> delivery fairs </p>
+        <p id="price_delivery" name="delivery">20</p>
+        <button class="button">calculation</button>
+             </form>
+        <p class="Details">total price</p>
+        <p id="total_price">{{RES}}</p>
+
+    </div>
+
 
         <div id="pizza_description">
-            <button id="step1" onclick="discription()" class="button">click here to reveal your pizza</button>
             <div id="a"></div>
             <p class="Details">the pizza for you is: </p>
-
+            <h2>{{name}} </h2>
             <p id="pic">
-
+                <a target="_blank" href="{{url_for('static', filename=pic)}}">
+                <img src="../static/{{picture}}" alt="{{alt}}">
+            </a>
             </p>
 
             <p id="pizzaChosen"></p>
             <p class="Details">description</p>
-            <p id="descriptionPizza"> </p>
+            <p id="descriptionPizza">{{description}}</p>
             <p class="Details">price:</p>
-            <p id="pizza_price"></p>
+            <p id="pizza_price">{{price}}</p>
 
         </div>
 
+</div>
 
-    </div>
+<div class="set__order__btn">
+    <button id="setOrderBtn" class="button" onclick="goToOC()">go to payment</button>
+</div>
 
-    <div class="set__order__btn">
-        <button id="setOrderBtn" class="button" onclick="goToOC()">go to payment</button>
-    </div>
-    {% endblock %}
+
+{% endblock %}

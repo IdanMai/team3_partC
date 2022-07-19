@@ -166,8 +166,9 @@ function calPrice() {
 
 function goToOC() {
     const qty = document.getElementById("num_pizza").value;
+
     if (qty == "") {
-        alert(`please fill out the wanted quantity`);
+        window.alert(`please fill out the wanted quantity`);
     }
     else {
         location.href = "/OrderConfirmation";

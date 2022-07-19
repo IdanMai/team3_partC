@@ -7,20 +7,23 @@ create table pizza
     description varchar(255) null,
     picture     varchar(100) null,
     alt         varchar(50)  not null,
+    score       int          not null,
     constraint pizza_id_uindex
         unique (id),
     constraint pizza_name_uindex
-        unique (name)
+        unique (name),
+    constraint pizza_score_uindex
+        unique (score)
 );
 
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (1, 'Corny', 70, 'Corn, tomato, bell pepper and olive pizza', 'pizza1.png', 'pizza1');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (2, 'Popeye', 60, 'Spinach, pineapple, onion and bell pepper pizza', 'pizza2.jpg', 'pizza2');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (4, 'Not Kosher', 18, 'Feta cheese, mushroom, ham and tomato pizza', 'pizza3.jpg', 'pizza3');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (5, 'Pepperoni', 65, 'Classic pepperoni and tomato pizza', 'pizza4.jpg', 'pizza4');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (6, 'Marshall', 100, 'Sweet s''mores pizza', 'pizza5.jpg', 'pizza5');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (7, 'Hawaiin', 73, 'Pineapple and ham pizza', 'pizza6.jpg', 'pizza6');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (8, 'Mexican', 55, 'Guacamole, jalapeno and mozzarella pizza', 'pizza7.jpg', 'pizza7');
-INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt) VALUES (9, 'Bad Breath', 50, 'Onion and tomato pizza', 'pizza8.jpg', 'pizza8');
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (1, 'Corny', 70, 'Corn, tomato, bell pepper and olive pizza', 'pizza1.png', 'pizza1', 16);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (2, 'Popeye', 60, 'Spinach, pineapple, onion and bell pepper pizza', 'pizza2.jpg', 'pizza2', 20);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (4, 'Not Kosher', 18, 'Feta cheese, mushroom, ham and tomato pizza', 'pizza3.jpg', 'pizza3', 24);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (5, 'Pepperoni', 65, 'Classic pepperoni and tomato pizza', 'pizza4.jpg', 'pizza4', 22);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (6, 'Marshall', 100, 'Sweet s''mores pizza', 'pizza5.jpg', 'pizza5', 21);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (7, 'Hawaiin', 73, 'Pineapple and ham pizza', 'pizza6.jpg', 'pizza6', 17);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (8, 'Mexican', 55, 'Guacamole, jalapeno and mozzarella pizza', 'pizza7.jpg', 'pizza7', 18);
+INSERT INTO `web-project-g3`.pizza (id, name, price, description, picture, alt, score) VALUES (9, 'Bad Breath', 50, 'Onion and tomato pizza', 'pizza8.jpg', 'pizza8', 19);
 
 
 

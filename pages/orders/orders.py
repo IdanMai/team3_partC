@@ -1,20 +1,104 @@
 import mysql.connector
-from flask import Blueprint, render_template, request, redirect, jsonify
+from flask import Blueprint, render_template, request, redirect, jsonify, session
+
+from utilities.db.orderTable import Order
+from utilities.db.pizzaTable import Pizza
 
 orders = Blueprint('orders', __name__,
-                       static_folder='static',
-                       static_url_path='/orders',
-                       template_folder='templates')
+                   static_folder='static',
+                   static_url_path='/orders',
+                   template_folder='templates')
 
 
 @orders.route('/Order_qestions')
 def main():
     return render_template('Order_qestions.html')
 
+
 @orders.route('/order')
 def order():
     return render_template('order.html')
 
+
 @orders.route('/OrderConfirmation')
 def OrderConfirmation():
     return render_template('OrderConfirmation.html')
+
+
+@orders.route('/pizza_cal', methods=['post'])
+def pizzaCal():
+    season = request.form['season']
+    continent = request.form['continent']
+    meal = request.form['meal']
+    count = 0
+    if (season == "winter"):
+        count = count + 1
+
+    if (season == "summer"):
+        count = count + 2
+
+    if (season == "Fall"):
+        count = count + 3
+
+    if (season == "Spring"):
+        count = count + 4
+
+    if (continent == "America"):
+        count = count + 5
+    if (continent == "Asia"):
+        count = count + 6
+    if (continent == "Australia"):
+        count = count + 7
+    if (continent == "Europe"):
+        count = count + 8
+    if (continent == "Antarctica"):
+        count = count + 9
+    if (meal == "yes"):
+        count = count + 10
+
+    if (meal == "no"):
+        count = count + 11
+
+    pizza = Pizza()
+    allPizza = pizza.getAllPizza()
+    gap = 50
+    res = 0
+    for pizza in allPizza:
+        if abs(pizza.score - count) < gap:
+            res = pizza
+            gap = abs(pizza.score - count)
+    session['pizzaRes'] = res
+    print(session['pizzaRes'])
+    return render_template('order.html',name=res.name, price=res.price, description=res.description,picture=res.picture,alt=res.alt)
+
+@orders.route('/pizza_del', methods=['post'])
+def pizzaDel():
+    numPizza =request.form['num']
+    deliveryPizza =20
+    Pizza=session['pizzaRes']
+    price=int(Pizza[2])
+    resPrice_delivery=int(numPizza)*price+deliveryPizza
+    session['total_price']=resPrice_delivery
+    session['numPizza'] = numPizza
+
+    return render_template('order.html',numPizza=numPizza ,RES=resPrice_delivery,name=Pizza[1], price=Pizza[2], description=Pizza[3],picture=Pizza[4],alt=Pizza[5])
+
+
+
+@orders.route('/submit_order', methods=['post'])
+def submitOrder():
+    email = request.form['email']
+    time = request.form['time']
+    address = request.form['address']
+    tel=request.form['tel']
+    creditNum=request.form['creditNum']
+    CVV=request.form['CVV']
+    expDate = request.form['expDate']
+    numPizza=session['numPizza']
+    total_price=session['total_price']
+    pizza=session['pizzaRes']
+    name=pizza[1]
+    order=Order()
+    print("orderrrrr")
+    order.add_order(email,time,address,tel,name,numPizza,total_price,creditNum,expDate,CVV)
+    return render_template('home.html')
