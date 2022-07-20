@@ -99,6 +99,6 @@ def submitOrder():
     pizza=session['pizzaRes']
     name=pizza[1]
     order=Order()
-    print("orderrrrr")
+
     order.add_order(email,time,address,tel,name,numPizza,total_price,creditNum,expDate,CVV)
     return render_template('home.html')

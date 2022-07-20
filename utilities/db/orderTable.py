@@ -11,7 +11,7 @@ class Order:
 
     def add_order(self, email, time_wanted, address, phone_number, pizza, amount, total_price, cc_number, cc_exp, cvv):
         query = "INSERT INTO orders(email, order_time, time_wanted, address, phone_number, pizza, amount," \
-                " total_price, cc_number, cc_exp, cvv) VALUES ('%s', '%s', '%s', %s,'%s', '%s', '%s', %s,'%s', '%s', '%s')" % (
+                " total_price, cc_number, cc_exp, cvv) VALUES ('%s', '%s', '%s', '%s','%s', '%s', '%s', '%s','%s', '%s', '%s')" % (
             email, datetime.today(), time_wanted, address, phone_number, pizza, amount,
             total_price, cc_number, cc_exp, cvv)
         query_result = dbManager.commit(query)
