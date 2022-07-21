@@ -4,6 +4,7 @@
 {% block title %}{{ title }} Page {% endblock %}
 {% set page = 'Home' %}
 
+<script src="{{ url_for('home.static', filename='js/home.js') }}"></script>
 
 
 {% block logo %}
@@ -39,7 +40,7 @@
         </p>
     </div>
     <div class="home__order__btn">
-        <button id="homeOrderBtn" class="button">ORDER NOW</button>
+        <button id="homeOrderBtn" class="button" onclick="window.location='http://127.0.0.1:5000/Order_qestions'">ORDER NOW</button>
     </div>
 </div>
 </div>

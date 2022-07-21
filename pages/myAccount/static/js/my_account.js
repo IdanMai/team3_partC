@@ -12,15 +12,3 @@ btn.addEventListener('click', () => {
   }
 });
 
-//
-// const btn = document.getElementById('btn_update_user');
-// const form = document.getElementById('update_user_form');
-//
-// btn.addEventListener('click', () => {
-//
-//   if (form.style.visibility === 'hidden') {
-//     form.style.visibility = 'visible';
-//   } else {
-//     form.style.visibility = 'hidden';
-//   }
-// });

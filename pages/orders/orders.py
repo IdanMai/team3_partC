@@ -1,8 +1,9 @@
 import mysql.connector
-from flask import Blueprint, render_template, request, redirect, jsonify, session
+from flask import Blueprint, render_template, request, redirect, jsonify, session, flash
 
 from utilities.db.orderTable import Order
 from utilities.db.pizzaTable import Pizza
+from utilities.db.user import User
 
 orders = Blueprint('orders', __name__,
                    static_folder='static',
@@ -68,7 +69,6 @@ def pizzaCal():
             res = pizza
             gap = abs(pizza.score - count)
     session['pizzaRes'] = res
-    print(session['pizzaRes'])
     return render_template('order.html',name=res.name, price=res.price, description=res.description,picture=res.picture,alt=res.alt)
 
 @orders.route('/pizza_del', methods=['post'])
@@ -78,7 +78,7 @@ def pizzaDel():
     Pizza=session['pizzaRes']
     price=int(Pizza[2])
     resPrice_delivery=int(numPizza)*price+deliveryPizza
-    session['total_price']=resPrice_delivery
+    session['total_price'] = resPrice_delivery
     session['numPizza'] = numPizza
 
     return render_template('order.html',numPizza=numPizza ,RES=resPrice_delivery,name=Pizza[1], price=Pizza[2], description=Pizza[3],picture=Pizza[4],alt=Pizza[5])
@@ -99,6 +99,35 @@ def submitOrder():
     pizza=session['pizzaRes']
     name=pizza[1]
     order=Order()
+    user=User()
+
+
+    if len(CVV) != 3 or CVV.isdigit() == False:
+        flash('CVV must be 3 digits', 'warning')
+        return render_template('orderConfirmation.html')
+
+    elif len(creditNum) < 10 or len(creditNum) > 16 or creditNum.isdigit() == False:
+        flash('Invalid credit card number', 'warning')
+        return render_template('orderConfirmation.html')
+
+
 
     order.add_order(email,time,address,tel,name,numPizza,total_price,creditNum,expDate,CVV)
+    flash('Your order has been placed and will be delivered soon', 'success')
+
+    user_found = user.search_user(email)
+    if user_found:
+        user_email = email
+        points_to_add = total_price * 0.1
+        user.add_points(points_to_add, user_email)
+
+    elif session['loggedin']:
+        user_email = session['email']
+        points_to_add = total_price * 0.1
+        user.add_points(points_to_add, user_email)
+
+
+
+
+
     return render_template('home.html')

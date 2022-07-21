@@ -27,6 +27,18 @@ class User:
         query_result = dbManager.commit(query)
         return query_result
 
+    def add_points(self, points, email):
+        points_query = f"SELECT points FROM users where email='%s'" % email
+        cur_points = dbManager.fetch(points_query)
+        point_lst = []
+        for point in cur_points:
+            point_lst.append(point.points)
+        cur_points = point_lst[0]
+        new_points = cur_points + points
+        query = f"UPDATE users set points= '%s' where email='%s'" % (new_points, email)
+        query_result = dbManager.commit(query)
+        return query_result
+
 
     def delete_user(self, email):
         query = f"delete from users where email='%s'" % email

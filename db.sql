@@ -1,3 +1,4 @@
+
 create table pizza
 (
     id          int auto_increment
