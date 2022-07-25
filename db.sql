@@ -61,9 +61,9 @@ create table orders
     pizza        varchar(255) not null,
     amount       int          not null,
     total_price  int          not null,
-    cc_number    varchar(20)  not null,
-    cc_exp       date         not null,
-    cvv          varchar(20)  not null,
+    cc_number    varchar(20)  null,
+    cc_exp       date         null,
+    cvv          varchar(20)  null,
     constraint orders_id_uindex
         unique (id)
 );

@@ -40,6 +40,39 @@ class User:
         return query_result
 
 
+    def get_points(self, email):
+        query = f"SELECT points FROM users where email='%s'" % email
+        cur_points = dbManager.fetch(query)
+        point_lst = []
+        for point in cur_points:
+            point_lst.append(point.points)
+        cur_points = point_lst[0]
+        return cur_points
+
+    def get_birthday(self, email):
+        query = f"SELECT birthday FROM users where email='%s'" % email
+        birthday = dbManager.fetch(query)
+        birthday_lst = []
+        for date in birthday:
+            birthday_lst.append(date.birthday)
+        birthday = birthday_lst[0]
+        return birthday
+
+
+
+    def use_points(self, email, price):
+        query = f"SELECT points FROM users where email='%s'" % email
+        cur_points = dbManager.fetch(query)
+        point_lst = []
+        for point in cur_points:
+            point_lst.append(point.points)
+        cur_points = point_lst[0]
+        new_points = cur_points - price
+        query = f"UPDATE users set points= '%s' where email='%s'" % (new_points, email)
+        query_result = dbManager.commit(query)
+        return query_result
+
+
     def delete_user(self, email):
         query = f"delete from users where email='%s'" % email
         query_result = dbManager.commit(query)

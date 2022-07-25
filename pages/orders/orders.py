@@ -1,3 +1,5 @@
+from datetime import date
+
 import mysql.connector
 from flask import Blueprint, render_template, request, redirect, jsonify, session, flash
 
@@ -23,7 +25,7 @@ def order():
 
 @orders.route('/OrderConfirmation')
 def OrderConfirmation():
-    return render_template('OrderConfirmation.html')
+    return render_template('OrderConfirmation.html', free=False)
 
 
 @orders.route('/pizza_cal', methods=['post'])
@@ -69,7 +71,7 @@ def pizzaCal():
             res = pizza
             gap = abs(pizza.score - count)
     session['pizzaRes'] = res
-    return render_template('order.html',name=res.name, price=res.price, description=res.description,picture=res.picture,alt=res.alt)
+    return render_template('order.html', name=res.name, price=res.price, description=res.description,picture=res.picture,alt=res.alt)
 
 @orders.route('/pizza_del', methods=['post'])
 def pizzaDel():
@@ -81,53 +83,90 @@ def pizzaDel():
     session['total_price'] = resPrice_delivery
     session['numPizza'] = numPizza
 
-    return render_template('order.html',numPizza=numPizza ,RES=resPrice_delivery,name=Pizza[1], price=Pizza[2], description=Pizza[3],picture=Pizza[4],alt=Pizza[5])
+
+    if session['email']:
+        user = User()
+        points = user.get_points(session['email'])
+        birthday=user.get_birthday(session['email'])
+        today=date.today()
+        if birthday == today:
+            is_birthday = True
+        else:
+            is_birthday = True
+
+        return render_template('order.html', numPizza=numPizza, RES=resPrice_delivery, name=Pizza[1], price=Pizza[2],
+                               description=Pizza[3], picture=Pizza[4], alt=Pizza[5], points=points, birthday=is_birthday)
+    else:
+        return render_template('order.html', numPizza=numPizza, RES=resPrice_delivery, name=Pizza[1], price=Pizza[2], description=Pizza[3],picture=Pizza[4],alt=Pizza[5])
+
 
 
 
 @orders.route('/submit_order', methods=['post'])
 def submitOrder():
+    order=Order()
+    user=User()
+
     email = request.form['email']
     time = request.form['time']
     address = request.form['address']
     tel=request.form['tel']
-    creditNum=request.form['creditNum']
-    CVV=request.form['CVV']
-    expDate = request.form['expDate']
     numPizza=session['numPizza']
     total_price=session['total_price']
     pizza=session['pizzaRes']
     name=pizza[1]
-    order=Order()
-    user=User()
+
+    if request.form['free'] == False:
+        creditNum=request.form['creditNum']
+        CVV=request.form['CVV']
+        expDate = request.form['expDate']
+
+        if len(CVV) != 3 or CVV.isdigit() == False:
+            flash('CVV must be 3 digits', 'warning')
+            return render_template('orderConfirmation.html', free=False)
+
+        elif len(creditNum) < 10 or len(creditNum) > 16 or creditNum.isdigit() == False:
+            flash('Invalid credit card number', 'warning')
+            return render_template('orderConfirmation.html', free=False)
 
 
-    if len(CVV) != 3 or CVV.isdigit() == False:
-        flash('CVV must be 3 digits', 'warning')
-        return render_template('orderConfirmation.html')
-
-    elif len(creditNum) < 10 or len(creditNum) > 16 or creditNum.isdigit() == False:
-        flash('Invalid credit card number', 'warning')
-        return render_template('orderConfirmation.html')
+        order.add_order(email,time,address,tel,name,numPizza,total_price,creditNum,expDate,CVV)
+        flash('Your order has been placed and will be delivered soon', 'success')
 
 
+        user_found = user.search_user(email)
+        if user_found:
+            user_email = email
+            points_to_add = total_price * 0.1
+            user.add_points(points_to_add, user_email)
 
-    order.add_order(email,time,address,tel,name,numPizza,total_price,creditNum,expDate,CVV)
-    flash('Your order has been placed and will be delivered soon', 'success')
-
-    user_found = user.search_user(email)
-    if user_found:
-        user_email = email
-        points_to_add = total_price * 0.1
-        user.add_points(points_to_add, user_email)
-
-    elif session['loggedin']:
-        user_email = session['email']
-        points_to_add = total_price * 0.1
-        user.add_points(points_to_add, user_email)
+        elif session['loggedin']:
+            user_email = session['email']
+            points_to_add = total_price * 0.1
+            user.add_points(points_to_add, user_email)
 
 
-
+    else:
+        order.add_order(email, time, address, tel, name, numPizza, total_price, None, '0000-00-00', None)
+        flash('Your free pizza order has been placed and will be delivered soon', 'success')
 
 
     return render_template('home.html')
+
+
+
+
+@orders.route('/free_pizza', methods=['post'])
+def free_pizza():
+    user = User()
+    user_email = session['email']
+    pizza_price = session['total_price']
+    user.use_points(user_email, pizza_price)
+    return render_template('OrderConfirmation.html', free=True)
+
+
+@orders.route('/birthday_pizza', methods=['post'])
+def birthday_pizza():
+    user = User()
+    user_email = session['email']
+    return render_template('OrderConfirmation.html', free=True)

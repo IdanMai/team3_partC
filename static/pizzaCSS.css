@@ -462,6 +462,7 @@ details {
 #container {
     display: grid;
     grid-template-areas: 'pizza_description'' order';
+
 }
 
 /*image description design*/
@@ -517,8 +518,9 @@ details {
 
 #pizza_description {
     grid-area: pizza_description;
-    margin: 20px;
-
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
