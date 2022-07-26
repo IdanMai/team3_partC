@@ -84,18 +84,19 @@ def pizzaDel():
     session['numPizza'] = numPizza
 
 
-    if session['email']:
-        user = User()
-        points = user.get_points(session['email'])
-        birthday=user.get_birthday(session['email'])
-        today=date.today()
-        if birthday == today:
-            is_birthday = True
-        else:
-            is_birthday = True
+    if session.get('email'):
+        if session['email']:
+            user = User()
+            points = user.get_points(session['email'])
+            birthday=user.get_birthday(session['email'])
+            today=date.today()
+            if birthday == today:
+                is_birthday = True
+            else:
+                is_birthday = True
 
-        return render_template('order.html', numPizza=numPizza, RES=resPrice_delivery, name=Pizza[1], price=Pizza[2],
-                               description=Pizza[3], picture=Pizza[4], alt=Pizza[5], points=points, birthday=is_birthday)
+            return render_template('order.html', numPizza=numPizza, RES=resPrice_delivery, name=Pizza[1], price=Pizza[2],
+                                   description=Pizza[3], picture=Pizza[4], alt=Pizza[5], points=points, birthday=is_birthday)
     else:
         return render_template('order.html', numPizza=numPizza, RES=resPrice_delivery, name=Pizza[1], price=Pizza[2], description=Pizza[3],picture=Pizza[4],alt=Pizza[5])
 
@@ -116,7 +117,7 @@ def submitOrder():
     pizza=session['pizzaRes']
     name=pizza[1]
 
-    if request.form['free'] == False:
+    if request.form['free'] == 'False':
         creditNum=request.form['creditNum']
         CVV=request.form['CVV']
         expDate = request.form['expDate']
@@ -140,10 +141,11 @@ def submitOrder():
             points_to_add = total_price * 0.1
             user.add_points(points_to_add, user_email)
 
-        elif session['loggedin']:
-            user_email = session['email']
-            points_to_add = total_price * 0.1
-            user.add_points(points_to_add, user_email)
+        elif session.get('loggedin'):
+            if session['loggedin']:
+                user_email = session['email']
+                points_to_add = total_price * 0.1
+                user.add_points(points_to_add, user_email)
 
 
     else:
