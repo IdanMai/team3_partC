@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 import mysql.connector
 from flask import Blueprint, render_template, request, redirect, jsonify, session, flash
@@ -89,11 +89,12 @@ def pizzaDel():
             user = User()
             points = user.get_points(session['email'])
             birthday=user.get_birthday(session['email'])
-            today=date.today()
+            today=datetime.today()
+
             if birthday == today:
                 is_birthday = True
             else:
-                is_birthday = True
+                is_birthday = False
 
             return render_template('order.html', numPizza=numPizza, RES=resPrice_delivery, name=Pizza[1], price=Pizza[2],
                                    description=Pizza[3], picture=Pizza[4], alt=Pizza[5], points=points, birthday=is_birthday)
