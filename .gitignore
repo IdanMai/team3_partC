@@ -2,5 +2,5 @@
 venv
 .idea
 logs
-__pycache__
+_pycache_
 env

@@ -150,7 +150,7 @@ def submitOrder():
 
 
     else:
-        order.add_order(email, time, address, tel, name, numPizza, total_price, None, '1970-01-01', None)
+        order.add_order(email, time, address, tel, name, numPizza, total_price, None, '0000-00-00', None)
         flash('Your free pizza order has been placed and will be delivered soon', 'success')
 
 
@@ -165,7 +165,7 @@ def free_pizza():
     user_email = session['email']
     pizza_price = session['total_price']
     user.use_points(user_email, pizza_price)
-    return render_template('OrderConfirmation.html', free=True, user_email=user_email)
+    return render_template('OrderConfirmation.html', free=True)
 
 
 @orders.route('/birthday_pizza', methods=['post'])
