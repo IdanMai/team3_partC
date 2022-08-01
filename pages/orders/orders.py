@@ -91,7 +91,7 @@ def pizzaDel():
             birthday=user.get_birthday(session['email'])
             today=datetime.today()
 
-            if birthday == today:
+            if birthday.month == today.month and birthday.day == today.day:
                 is_birthday = True
             else:
                 is_birthday = False

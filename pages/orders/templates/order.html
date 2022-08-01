@@ -63,10 +63,11 @@
     </div>
 
 </div>
-
+{% if session['total_price']%}
 <div class="set__order__btn">
-    <button id="setOrderBtn" class="button" onclick="goToOC()">go to payment</button>
+    <button  id="setOrderBtn" class="button" onclick="goToOC()">go to payment</button>
 </div>
+{% endif %}
 
 
 {% endblock %}

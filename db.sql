@@ -1,4 +1,4 @@
-
+create database 'web-project-g3';
 create table pizza
 (
     id          int auto_increment
